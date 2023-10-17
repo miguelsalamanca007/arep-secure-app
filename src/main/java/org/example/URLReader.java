@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class URLReader {
 
-    public static void main(String[] args) throws Exception {
+    public static void readSecureURL(String url) throws Exception {
         // Create a file and a password representation
         File trustStoreFile = new File("./keystores/myTrustStore");
         char[] trustStorePassword = "123456".toCharArray();
@@ -29,14 +29,15 @@ public class URLReader {
         SSLContext sslContext = SSLContext.getInstance("TLS");
         sslContext.init(null, tmf.getTrustManagers(), null);
         SSLContext.setDefault(sslContext);
+
         // We can now read this URL
-        readURL("https://localhost:5000/hello");
+        readURL(url);
         // This one can't be read because the Java default truststore has been
         // changed.
-        readURL("https://www.google.com");
+        // readURL("https://www.google.com");
     }
 
-    public static void readURL(String urlstr) throws Exception {
+    public static String readURL(String urlstr) throws Exception {
         String site = urlstr;
         // Crea el objeto que representa una URL
         URL siteURL = new URL(site);
@@ -62,7 +63,7 @@ public class URLReader {
             //System.out.println("");
         }
 
-
+        String response = "";
 
         System.out.println("-------message-body------");
         BufferedReader reader
@@ -72,9 +73,11 @@ public class URLReader {
             String inputLine = null;
             while ((inputLine = reader.readLine()) != null) {
                 System.out.println(inputLine);
+                response += inputLine+"\n";
             }
         } catch (IOException x) {
             System.err.println(x);
         }
+        return response;
     }
 }
