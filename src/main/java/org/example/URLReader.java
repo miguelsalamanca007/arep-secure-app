@@ -12,9 +12,9 @@ import java.util.Set;
 
 public class URLReader {
 
-    public static void readSecureURL(String url) throws Exception {
+    public static String readSecureURL(String url) throws Exception {
         // Create a file and a password representation
-        File trustStoreFile = new File("./keystores1/myTrustStore");
+        File trustStoreFile = new File("keystores/myTrustStore");
         char[] trustStorePassword = "123456".toCharArray();
         // Load the trust store, the default type is "pkcs12", the alternative is "jks"
         KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
@@ -31,10 +31,11 @@ public class URLReader {
         SSLContext.setDefault(sslContext);
 
         // We can now read this URL
-        readURL(url);
+        String response = readURL(url);
         // This one can't be read because the Java default truststore has been
         // changed.
         // readURL("https://www.google.com");
+        return response;
     }
 
     public static String readURL(String urlstr) throws Exception {
