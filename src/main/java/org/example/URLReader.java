@@ -14,7 +14,7 @@ public class URLReader {
 
     public static void readSecureURL(String url) throws Exception {
         // Create a file and a password representation
-        File trustStoreFile = new File("./keystores/myTrustStore");
+        File trustStoreFile = new File("./keystores1/myTrustStore");
         char[] trustStorePassword = "123456".toCharArray();
         // Load the trust store, the default type is "pkcs12", the alternative is "jks"
         KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
