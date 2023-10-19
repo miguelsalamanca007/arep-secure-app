@@ -7,7 +7,7 @@ public class Backend2 {
         //API: secure(keystoreFilePath, keystorePassword, truststoreFilePath, truststorePassword);
         secure("keystores/ecikeystore.p12", "123456", null, null);
         port(getPort());
-        get("/hello", (req, res) -> "Hello World From Backend2");
+        get("/hello", (req, res) -> "Hello from the remote server, ");
     }
 
     static int getPort() {

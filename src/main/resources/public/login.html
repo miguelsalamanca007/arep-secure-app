@@ -1,33 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Document</title>
-  </head>
-  <body>
-    <h1>Login</h1>
-      <form action="/login">
-        <label for="username">user:</label><br>
-        <input type="text" id="username" name="username" autocomplete="disable"><br><br>
+<html>
 
-        <label for="password">password:</label><br>
-        <input type="password" id="password" name="password"><br><br>
+<head>
+  <meta charset="UTF-8">
+  <title>Log In</title>
+  <style>
+    .login-form {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-        <input type="button" value="Submit" onclick="loadPostMsg(username, password)">
-      </form>
-        
-      <div id="postrespmsg"></div>
-        
-      <script>
-        function loadPostMsg(username, password){
-            let url = "/login?username=" + username.value + "&password=" + password.value;
+    .login-form label {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
 
-            fetch (url, {method: 'POST'})
-                .then(x => x.text())
-                .then(y => document.getElementById("postrespmsg").innerHTML = y);
-        }
-      </script>
-  </body>
+    .login-form input {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .login-form input[type="submit"] {
+      background-color: #000;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Log In</h1>
+
+  <section class="login-form">
+    <h2>Enter your credentials</h2>
+    <form method="post" action="/login">
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username">
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password">
+      <input type="submit" value="Log In">
+    </form>
+  </section>
+</body>
+
 </html>

@@ -27,11 +27,14 @@ public class Backend1 {
 
             if (users.containsKey(username) && users.get(username).equals(hashGenerator(password))) {
                 System.out.println("Login Success");
-                String response = URLReader.readSecureURL("https://localhost:5001/hello");
-                return response;
+                res.redirect("/loggedInPage.html");
             }
 
             return "There was an error, try again";
+        });
+
+        get("/getLoggedInPage",  (req, res) -> {
+            return URLReader.readSecureURL("https://localhost:5001/hello");
         });
     }
 
